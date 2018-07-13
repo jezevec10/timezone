@@ -3,6 +3,7 @@ namespace Camroncade\Timezone;
 
 use DateTime;
 use DateTimeZone;
+use Illuminate\Support\Facades\Config;
 
 class Timezone {
 
@@ -168,7 +169,7 @@ class Timezone {
      * @return string
      */
     public function selectForm($selected = null, $placeholder = null, array $selectAttributes = [
-], array $optionAttributes = []) {
+    ], array $optionAttributes = []) {
         $selectAttributesString = '';
         foreach ($selectAttributes as $key => $value) {
             $selectAttributesString = $selectAttributesString . " " . $key . "='" . $value . "'";
@@ -211,9 +212,7 @@ class Timezone {
      */
     public function convertFromUTC($timestamp, $timezone, $format = 'Y-m-d H:i:s') {
         $date = new DateTime($timestamp, new DateTimeZone('UTC'));
-
         $date->setTimezone(new DateTimeZone($timezone));
-
         return $date->format($format);
     }
 
@@ -226,9 +225,33 @@ class Timezone {
      */
     public function convertToUTC($timestamp, $timezone, $format = 'Y-m-d H:i:s') {
         $date = new DateTime($timestamp, new DateTimeZone($timezone));
-
         $date->setTimezone(new DateTimeZone('UTC'));
+        return $date->format($format);
+    }
 
+    /**
+     * @param integer $timestamp
+     * @param string $timezone
+     * @param string $format
+     *
+     * @return string
+     */
+    public function convertFromAppTimezone($timestamp, $timezone, $format = 'Y-m-d H:i:s') {
+        $date = new DateTime($timestamp, new DateTimeZone(Config::get('app.timezone')));
+        $date->setTimezone(new DateTimeZone($timezone));
+        return $date->format($format);
+    }
+
+    /**
+     * @param integer $timestamp
+     * @param string $timezone
+     * @param string $format
+     *
+     * @return string
+     */
+    public function convertToAppTimezone($timestamp, $timezone, $format = 'Y-m-d H:i:s') {
+        $date = new DateTime($timestamp, new DateTimeZone($timezone));
+        $date->setTimezone(new DateTimeZone(Config::get('app.timezone')));
         return $date->format($format);
     }
 }
