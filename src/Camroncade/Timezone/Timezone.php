@@ -43,7 +43,7 @@ class Timezone {
         '(UTC-01:00) Cape Verde Is.' => 'Atlantic/Cape_Verde',
         '(UTC+00:00) Casablanca' => 'Africa/Casablanca',
         '(UTC+00:00) Edinburgh' => 'Europe/London',
-        '(UTC+00:00) Greenwich Mean Time : Dublin' => 'Etc/Greenwich',
+        '(UTC+00:00) Greenwich Mean Time : Dublin' => 'Europe/Dublin',
         '(UTC+00:00) Lisbon' => 'Europe/Lisbon',
         '(UTC+00:00) London' => 'Europe/London',
         '(UTC+00:00) Monrovia' => 'Africa/Monrovia',
